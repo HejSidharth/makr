@@ -1,30 +1,30 @@
-# gtempl
+# makr
 
-A modern CLI for managing GitHub project templates with a beautiful, interactive interface.
+A smart project organizer for creating, organizing, and managing development projects with templates.
 
 ## Features
 
-- ✨ Beautiful interactive prompts with modern UI
-- 🚀 Hybrid interface (interactive + command flags)
-- 🏷️ Tag-based organization and filtering
+- ✨ Interactive project wizard (`makr new`)
+- 🧭 Organize projects by type + language
+- 🏷️ Tag-based template organization and filtering
 - 🔍 Search templates by name, description, or tags
-- 📦 Clone templates with progress indicators
+- 📦 Clone or fork templates with progress indicators
 - 🧩 Template collections for curated stacks
 - 🧼 Default clean clones (no `.git` history)
-- 🎨 Color-coded output and table views
+- 🕘 Recent projects tracking (`makr projects`)
 - 💾 Persistent configuration storage
 - 🔧 Flexible URL handling (supports GitHub tree/blob paths)
 
 ## Installation
 
 ```bash
-npm install -g gtempl
+npm install -g makr
 ```
 
 Or run directly with npx:
 
 ```bash
-npx gtempl
+npx makr
 ```
 
 ## Quick Start
@@ -32,89 +32,103 @@ npx gtempl
 ### Initialize Configuration
 
 ```bash
-gtempl init
+makr init
 ```
 
 This will guide you through setting up your default clone path and other preferences.
+
+### Create a Project
+
+```bash
+makr new
+```
+
+This launches an interactive wizard that organizes projects by type and language.
+
+### View Recent Projects
+
+```bash
+makr projects
+```
 
 ### Add a Template
 
 ```bash
 # Interactive mode
-gtempl add
+makr add
 
 # Or with flags
-gtempl add --name my-starter --url https://github.com/user/repo --tags typescript,react --description "Full-stack starter kit"
+makr add --name my-starter --url https://github.com/user/repo --tags typescript,react --description "Full-stack starter kit"
 
 # Add from GitHub example directory
-gtempl add --name nextjs-hello --url https://github.com/vercel/next.js/tree/canary/examples/hello-world --tags nextjs,react,example
+makr add --name nextjs-hello --url https://github.com/vercel/next.js/tree/canary/examples/hello-world --tags nextjs,react,example
 ```
 
 ### List Templates
 
 ```bash
 # List all templates
-gtempl list
+makr list
 
 # Filter by tag
-gtempl list --filter typescript
+makr list --filter typescript
 
 # Output as JSON
-gtempl list --json
+makr list --json
 ```
 
 ### Clone a Template
 
 ```bash
 # Clone with interactive confirmation (defaults to no .git)
-gtempl clone my-starter
+makr clone my-starter
 
 # Keep git history
 
-gtempl clone my-starter --keep-git
+makr clone my-starter --keep-git
 
 # Fork privately before cloning
 
-gtempl clone my-starter --fork
+makr clone my-starter --fork
 
 # Clone to specific directory
-gtempl clone my-starter --dir ./my-project
+makr clone my-starter --dir ./my-project
 
 # Clone specific branch
-gtempl clone my-starter --branch develop
+makr clone my-starter --branch develop
 ```
 
 ### Search Templates
 
 ```bash
 # Search by name, description, or tags
-gtempl search react
+makr search react
 
 # Find templates with specific keywords
-gtempl search fullstack
+makr search fullstack
 ```
 
 ### Remove a Template
 
 ```bash
-gtempl remove my-starter
+makr remove my-starter
 ```
 
 ### Create a Collection
 
 ```bash
 # Create a collection
-gtempl collection add web-stack --tags web,frontend
+makr collection add web-stack --tags web,frontend
 
 # Add templates to the collection
-gtempl collection include web-stack react-starter
-gtempl collection include web-stack nextjs-starter
+makr collection include web-stack react-starter
+makr collection include web-stack nextjs-starter
 
 # View collection details
-gtempl collection show web-stack
+makr collection show web-stack
 
 # Scaffold (clone) all templates with confirmation
-gtempl collection scaffold web-stack --dir ~/projects/web-stack
+makr collection scaffold web-stack --dir ~/projects/web-stack
 ```
 
 ## Examples
@@ -123,53 +137,53 @@ gtempl collection scaffold web-stack --dir ~/projects/web-stack
 
 ```bash
 # 1. Initialize your configuration
-gtempl init
+makr init
 
 # 2. Add your favorite templates
-gtempl add --name react-starter --url https://github.com/facebook/react --tags react,javascript,library
+makr add --name react-starter --url https://github.com/facebook/react --tags react,javascript,library
 
-gtempl add --name nextjs-starter --url https://github.com/vercel/next.js/tree/canary/examples/hello-world --tags nextjs,react,ssr
+makr add --name nextjs-starter --url https://github.com/vercel/next.js/tree/canary/examples/hello-world --tags nextjs,react,ssr
 
-gtempl add --name typescript-node --url https://github.com/microsoft/TypeScript-Node-Starter --tags typescript,node,backend
+makr add --name typescript-node --url https://github.com/microsoft/TypeScript-Node-Starter --tags typescript,node,backend
 
 # 3. List all templates
-gtempl list
+makr list
 
 # 4. Search for a specific template
-gtempl search nextjs
+makr search nextjs
 
 # 5. Clone a template for a new project
-gtempl clone nextjs-starter --dir ~/projects/my-new-app
+makr clone nextjs-starter --dir ~/projects/my-new-app
 ```
 
 ### Using Tags Effectively
 
 ```bash
 # Add templates with descriptive tags
-gtempl add --name frontend-react --url https://github.com/user/frontend --tags frontend,react
+makr add --name frontend-react --url https://github.com/user/frontend --tags frontend,react
 
-gtempl add --name backend-node --url https://github.com/user/backend --tags backend,node
+makr add --name backend-node --url https://github.com/user/backend --tags backend,node
 
-gtempl add --name fullstack-mern --url https://github.com/user/mern-starter --tags fullstack,mern
+makr add --name fullstack-mern --url https://github.com/user/mern-starter --tags fullstack,mern
 
 # Filter by tag
-gtempl list --filter frontend
-gtempl list --filter backend
-gtempl list --filter fullstack
+makr list --filter frontend
+makr list --filter backend
+makr list --filter fullstack
 ```
 
 ## Commands
 
-### `gtempl init`
+### `makr init`
 
-Initialize the gtempl configuration.
+Initialize the makr configuration.
 
 **Options:** None
 
 **Example:**
 ```bash
-$ gtempl init
-┌─ Initialize gtempl ─────────────────────────────────┐
+$ makr init
+┌─ Initialize makr ─────────────────────────────────┐
 
 ◆  Default clone path:
 │  ~/projects
@@ -183,7 +197,41 @@ $ gtempl init
 ✓ Configuration saved successfully!
 ```
 
-### `gtempl add [options]`
+### `makr new`
+
+Create a new project with the interactive wizard.
+
+**Options:**
+- `-n, --name <name>` - Project name
+- `-t, --type <type>` - Project type (official, experiment, learning, playground)
+- `-l, --language <lang>` - Programming language
+- `--template <name>` - Use a saved template by name
+- `--url <url>` - Use a GitHub URL as template
+
+**Example:**
+```bash
+$ makr new
+```
+
+### `makr projects`
+
+List and manage recent projects.
+
+**Options:**
+- `-t, --type <type>` - Filter by project type
+- `-l, --language <lang>` - Filter by language
+- `-n, --limit <number>` - Number of projects to show
+- `--json` - Output as JSON
+
+**Examples:**
+```bash
+$ makr projects
+$ makr projects open my-awesome-app
+$ makr projects clean
+$ makr projects remove my-awesome-app
+```
+
+### `makr add [options]`
 
 Add a new GitHub template.
 
@@ -196,16 +244,16 @@ Add a new GitHub template.
 **Examples:**
 ```bash
 # Interactive mode with prompts
-$ gtempl add
+$ makr add
 
 # With all flags
-$ gtempl add --name nextjs-starter --url https://github.com/user/nextjs-starter --tags nextjs,typescript,react --description "A Next.js starter template"
+$ makr add --name nextjs-starter --url https://github.com/user/nextjs-starter --tags nextjs,typescript,react --description "A Next.js starter template"
 
 # From GitHub example directory
-$ gtempl add --name hello-world --url https://github.com/vercel/next.js/tree/canary/examples/hello-world
+$ makr add --name hello-world --url https://github.com/vercel/next.js/tree/canary/examples/hello-world
 ```
 
-### `gtempl list [options]`
+### `makr list [options]`
 
 List all saved templates.
 
@@ -217,7 +265,7 @@ List all saved templates.
 **Examples:**
 ```bash
 # List all templates
-$ gtempl list
+$ makr list
 ┌─ All Templates ─────────────────────────────────┐
 Found 3 template(s)
 ┌─────────────────┬───────────────────────┬───────────────┬──────────────────────┐
@@ -227,17 +275,17 @@ Found 3 template(s)
 └─────────────────┴───────────────────────┴───────────────┴──────────────────────┘
 
 # Filter by tag
-$ gtempl list --filter typescript
+$ makr list --filter typescript
 
 # Filter by collection
-$ gtempl list --collection web-stack
+$ makr list --collection web-stack
 
 # JSON output
-$ gtempl list --json
+$ makr list --json
 ```
 
 
-### `gtempl clone <name> [options]`
+### `makr clone <name> [options]`
 
 Clone a template to your local machine.
 
@@ -253,24 +301,24 @@ Clone a template to your local machine.
 **Examples:**
 ```bash
 # Clone with defaults (no .git history)
-$ gtempl clone nextjs-starter
+$ makr clone nextjs-starter
 ✔ Template cloned to: ~/projects/nextjs-starter
 ✓ Ready to start coding!
 
 # Keep git history
-$ gtempl clone nextjs-starter --keep-git
+$ makr clone nextjs-starter --keep-git
 
 # Fork privately before cloning
-$ gtempl clone nextjs-starter --fork
+$ makr clone nextjs-starter --fork
 
 # Clone to specific directory
-$ gtempl clone nextjs-starter --dir ./my-new-project
+$ makr clone nextjs-starter --dir ./my-new-project
 
 # Clone specific branch
-$ gtempl clone nextjs-starter --branch develop
+$ makr clone nextjs-starter --branch develop
 ```
 
-### `gtempl remove <name>`
+### `makr remove <name>`
 
 Remove a saved template.
 
@@ -279,11 +327,11 @@ Remove a saved template.
 
 **Example:**
 ```bash
-$ gtempl remove old-template
+$ makr remove old-template
 ✓ Template "old-template" removed successfully
 ```
 
-### `gtempl collection`
+### `makr collection`
 
 Manage template collections for curated stacks.
 
@@ -299,22 +347,22 @@ Manage template collections for curated stacks.
 **Examples:**
 ```bash
 # Create a collection
-$ gtempl collection add web-stack --tags web,frontend
+$ makr collection add web-stack --tags web,frontend
 
 # Add templates to a collection
-$ gtempl collection include web-stack react-starter
+$ makr collection include web-stack react-starter
 
 # Show collection templates
-$ gtempl collection show web-stack
+$ makr collection show web-stack
 
 # Scaffold all templates
-$ gtempl collection scaffold web-stack --dir ~/projects/web-stack
+$ makr collection scaffold web-stack --dir ~/projects/web-stack
 
 # Scaffold with forks and keep git history
-$ gtempl collection scaffold web-stack --fork --keep-git
+$ makr collection scaffold web-stack --fork --keep-git
 ```
 
-### `gtempl search <query>`
+### `makr search <query>`
 
 Search templates by name, description, or tags.
 
@@ -326,7 +374,7 @@ Search templates by name, description, or tags.
 
 **Example:**
 ```bash
-$ gtempl search react
+$ makr search react
 ┌─ Search Results: "react" ─────────────────────────────────┐
 Found 2 template(s)
 ┌─────────────────┬──────────────────────┬────────────────┐
@@ -339,7 +387,7 @@ Found 2 template(s)
 
 ## Configuration
 
-Templates and settings are stored in `~/.config/gtempl/config.json`. A GitHub token is required for `--fork` and can be set via `gtempl init`.
+Templates, project types, and recent projects are stored in `~/.config/makr/config.json`. A GitHub token is required for `--fork` and can be set via `makr init`.
 
 **Config Structure:**
 ```json
@@ -362,6 +410,24 @@ Templates and settings are stored in `~/.config/gtempl/config.json`. A GitHub to
       "description": "Frontend starter kit",
       "tags": ["web", "frontend"],
       "templateIds": ["unique-id"],
+      "createdAt": "2025-01-11T00:00:00.000Z"
+    }
+  ],
+  "projectTypes": [
+    {
+      "name": "official",
+      "path": "~/projects",
+      "description": "Production-ready projects"
+    }
+  ],
+  "languages": ["typescript", "python", "rust"],
+  "recentProjects": [
+    {
+      "id": "recent-id",
+      "name": "my-awesome-app",
+      "path": "~/experiments/typescript/my-awesome-app",
+      "type": "experiment",
+      "language": "typescript",
       "createdAt": "2025-01-11T00:00:00.000Z"
     }
   ],

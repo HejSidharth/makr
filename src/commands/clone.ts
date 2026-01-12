@@ -22,7 +22,7 @@ export function createCloneCommand(): Command {
       const template = await getTemplateByName(name);
 
       if (!template) {
-        error(`Template "${name}" not found. Use "gtempl list" to see available templates.`);
+        error(`Template "${name}" not found. Use "makr list" to see available templates.`);
         process.exit(1);
       }
 
@@ -77,7 +77,7 @@ export function createCloneCommand(): Command {
 
       if (shouldFork) {
         if (!config.config.githubToken) {
-          error('GitHub token is required to fork repositories. Run "gtempl init" to set one.');
+          error('GitHub token is required to fork repositories. Run "makr init" to set one.');
           process.exit(1);
         }
 

@@ -8,13 +8,15 @@ import { createRemoveCommand } from './commands/remove.js';
 import { createSearchCommand } from './commands/search.js';
 import { createInitCommand } from './commands/init.js';
 import { createCollectionCommand } from './commands/collection.js';
+import { createNewCommand } from './commands/new.js';
+import { createProjectsCommand } from './commands/projects.js';
 
 const program = new Command();
 
 program
-  .name('gtempl')
-  .description('A modern CLI for managing GitHub project templates')
-  .version('1.0.0');
+  .name('makr')
+  .description('Smart project organizer - create, organize, and manage development projects')
+  .version('2.0.0');
 
 program.addCommand(createInitCommand());
 program.addCommand(createAddCommand());
@@ -23,11 +25,13 @@ program.addCommand(createCloneCommand());
 program.addCommand(createRemoveCommand());
 program.addCommand(createSearchCommand());
 program.addCommand(createCollectionCommand());
+program.addCommand(createNewCommand());
+program.addCommand(createProjectsCommand());
 
 program.on('command:*', (operands) => {
   console.error(chalk.red(`error: unknown command '${operands[0]}'`));
   console.log('');
-  console.log(chalk.gray('Run "gtempl --help" for available commands'));
+  console.log(chalk.gray('Run "makr --help" for available commands'));
   process.exit(1);
 });
 

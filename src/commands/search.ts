@@ -17,7 +17,7 @@ export function createSearchCommand(): Command {
       if (options.collection) {
         const collection = await getCollectionByName(options.collection);
         if (!collection) {
-          error(`Collection "${options.collection}" not found. Use "gtempl collection list" to see collections.`);
+          error(`Collection "${options.collection}" not found. Use "makr collection list" to see collections.`);
           process.exit(1);
         }
         templates = await getTemplatesByIds(collection.templateIds);

@@ -113,7 +113,7 @@ export function createCollectionCommand(): Command {
       try {
         const collection = await getCollectionByName(name);
         if (!collection) {
-          error(`Collection "${name}" not found. Use "gtempl collection list" to see collections.`);
+          error(`Collection "${name}" not found. Use "makr collection list" to see collections.`);
           process.exit(1);
         }
 
@@ -136,13 +136,13 @@ export function createCollectionCommand(): Command {
       try {
         const collection = await getCollectionByName(collectionName);
         if (!collection) {
-          error(`Collection "${collectionName}" not found. Use "gtempl collection list" to see collections.`);
+          error(`Collection "${collectionName}" not found. Use "makr collection list" to see collections.`);
           process.exit(1);
         }
 
         const matches = await findTemplatesByIdentifier(templateIdentifier);
         if (matches.length === 0) {
-          error(`Template "${templateIdentifier}" not found. Use "gtempl list" to see templates.`);
+          error(`Template "${templateIdentifier}" not found. Use "makr list" to see templates.`);
           process.exit(1);
         }
         if (matches.length > 1) {
@@ -171,13 +171,13 @@ export function createCollectionCommand(): Command {
       try {
         const collection = await getCollectionByName(collectionName);
         if (!collection) {
-          error(`Collection "${collectionName}" not found. Use "gtempl collection list" to see collections.`);
+          error(`Collection "${collectionName}" not found. Use "makr collection list" to see collections.`);
           process.exit(1);
         }
 
         const matches = await findTemplatesByIdentifier(templateIdentifier);
         if (matches.length === 0) {
-          error(`Template "${templateIdentifier}" not found. Use "gtempl list" to see templates.`);
+          error(`Template "${templateIdentifier}" not found. Use "makr list" to see templates.`);
           process.exit(1);
         }
         if (matches.length > 1) {
@@ -205,7 +205,7 @@ export function createCollectionCommand(): Command {
       try {
         const collection = await getCollectionByName(name);
         if (!collection) {
-          error(`Collection "${name}" not found. Use "gtempl collection list" to see collections.`);
+          error(`Collection "${name}" not found. Use "makr collection list" to see collections.`);
           process.exit(1);
         }
 
@@ -243,7 +243,7 @@ export function createCollectionCommand(): Command {
       try {
         const collection = await getCollectionByName(name);
         if (!collection) {
-          error(`Collection "${name}" not found. Use "gtempl collection list" to see collections.`);
+          error(`Collection "${name}" not found. Use "makr collection list" to see collections.`);
           process.exit(1);
         }
 
@@ -320,7 +320,7 @@ export function createCollectionCommand(): Command {
 
           if (shouldFork) {
             if (!config.config.githubToken) {
-              error('GitHub token is required to fork repositories. Run "gtempl init" to set one.');
+              error('GitHub token is required to fork repositories. Run "makr init" to set one.');
               process.exit(1);
             }
 

@@ -17,9 +17,28 @@ export interface Collection {
   createdAt: string;
 }
 
+export interface ProjectType {
+  name: string;
+  path: string;
+  description: string;
+}
+
+export interface RecentProject {
+  id: string;
+  name: string;
+  path: string;
+  type: string;
+  language: string;
+  templateUsed?: string;
+  createdAt: string;
+}
+
 export interface Config {
   templates: Template[];
   collections: Collection[];
+  projectTypes: ProjectType[];
+  languages: string[];
+  recentProjects: RecentProject[];
   config: {
     defaultBranch: string;
     githubToken: string | null;
@@ -65,4 +84,19 @@ export interface CollectionScaffoldOptions {
   branch?: string;
   fork?: boolean;
   keepGit?: boolean;
+}
+
+export interface NewProjectOptions {
+  name?: string;
+  type?: string;
+  language?: string;
+  template?: string;
+  url?: string;
+}
+
+export interface ProjectsListOptions {
+  type?: string;
+  language?: string;
+  limit?: number;
+  json?: boolean;
 }

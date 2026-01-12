@@ -9,11 +9,11 @@ import { success, error, handleCancel, title } from '../lib/ui.js';
 
 export function createInitCommand(): Command {
   const cmd = new Command('init')
-    .description('Initialize gtempl configuration');
+    .description('Initialize makr configuration');
 
   cmd.action(async () => {
     try {
-      title('Initialize gtempl');
+      title('Initialize makr');
 
       await ensureConfigDir();
       const config = await readConfig();

@@ -14,7 +14,7 @@ export function createRemoveCommand(): Command {
       const template = await getTemplateByName(name);
 
       if (!template) {
-        error(`Template "${name}" not found. Use "gtempl list" to see available templates.`);
+        error(`Template "${name}" not found. Use "makr list" to see available templates.`);
         process.exit(1);
       }
 

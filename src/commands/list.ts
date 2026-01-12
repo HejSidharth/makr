@@ -21,7 +21,7 @@ export function createListCommand(): Command {
       if (options.collection) {
         const collection = await getCollectionByName(options.collection);
         if (!collection) {
-          error(`Collection "${options.collection}" not found. Use "gtempl collection list" to see collections.`);
+          error(`Collection "${options.collection}" not found. Use "makr collection list" to see collections.`);
           process.exit(1);
         }
         filteredTemplates = await getTemplatesByIds(collection.templateIds);
@@ -45,7 +45,7 @@ export function createListCommand(): Command {
         if (options.filter) {
           info(`No templates found with tag "${options.filter}"`);
         } else {
-          info('No templates saved yet. Use "gtempl add" to add your first template.');
+          info('No templates saved yet. Use "makr add" to add your first template.');
         }
         return;
       }
