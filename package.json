@@ -1,0 +1,41 @@
+{
+  "name": "gtempl",
+  "version": "1.0.0",
+  "description": "A modern CLI for managing GitHub project templates",
+  "type": "module",
+  "bin": {
+    "gtempl": "./bin/gtempl.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "node --loader ts-node/esm ./src/index.ts",
+    "postinstall": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "cli",
+    "github",
+    "templates",
+    "scaffold",
+    "starter-projects"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@clack/prompts": "^0.8.2",
+    "chalk": "^5.4.1",
+    "cli-table3": "^0.6.5",
+    "commander": "^12.1.0",
+    "octokit": "^4.1.0",
+    "ora": "^8.1.1",
+    "simple-git": "^3.27.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2",
+    "ts-node": "^10.9.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
