@@ -4,16 +4,16 @@ A modern CLI for managing GitHub project templates with a beautiful, interactive
 
 ## Features
 
-- ✨ Beautiful interactive prompts with modern UI
-- 🚀 Hybrid interface (interactive + command flags)
-- 🏷️ Tag-based organization and filtering
-- 🔍 Search templates by name, description, or tags
-- 📦 Clone templates with progress indicators
-- 🧩 Template collections for curated stacks
-- 🧼 Default clean clones (no `.git` history)
-- 🎨 Color-coded output and table views
-- 💾 Persistent configuration storage
-- 🔧 Flexible URL handling (supports GitHub tree/blob paths)
+- Beautiful interactive prompts with modern UI
+- Hybrid interface (interactive + command flags)
+- Tag-based organization and filtering
+- Search templates by name, description, or tags
+- Clone templates with progress indicators
+- Template collections for curated stacks
+- Default clean clones (no `.git` history)
+- Color-coded output and table views
+- Persistent configuration storage
+- Flexible URL handling (supports GitHub tree/blob paths)
 
 ## Installation
 
