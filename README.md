@@ -4,18 +4,18 @@ A smart project organizer for creating, organizing, and managing development pro
 
 ## Features
 
-- ✨ Interactive project wizard (`makr new`)
-- 🧭 Organize projects by type + language
-- 🚀 Hybrid interface (interactive + command flags)
-- 🏷️ Tag-based template organization and filtering
-- 🔍 Search templates by name, description, or tags
-- 📦 Clone or fork templates with progress indicators
-- 🧩 Template collections for curated stacks
-- 🧼 Default clean clones (no `.git` history)
-- 🕘 Recent projects tracking (`makr projects`)
-- 🎨 Color-coded output and table views
-- 💾 Persistent configuration storage
-- 🔧 Flexible URL handling (supports GitHub tree/blob paths)
+- Interactive project wizard (`makr new`)
+- Organize projects by type + language
+- Hybrid interface (interactive + command flags)
+- Tag-based template organization and filtering
+- Search templates by name, description, or tags
+- Clone or fork templates with progress indicators
+- Template collections for curated stacks
+- Default clean clones (no `.git` history)
+- Recent projects tracking (`makr projects`)
+- Color-coded output and table views
+- Persistent configuration storage
+- Flexible URL handling (supports GitHub tree/blob paths)
 
 ## Installation
 
