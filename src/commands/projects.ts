@@ -66,6 +66,7 @@ function displayProjectsJson(projects: RecentProject[]): void {
 export function createProjectsCommand(): Command {
   const cmd = new Command('projects')
     .description('List and manage recent projects')
+    .alias('view')
     .option('-t, --type <type>', 'Filter by project type')
     .option('-l, --language <lang>', 'Filter by language')
     .option('-n, --limit <number>', 'Number of projects to show', '10')
