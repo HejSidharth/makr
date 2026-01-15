@@ -10,6 +10,7 @@ import { createInitCommand } from './commands/init.js';
 import { createCollectionCommand } from './commands/collection.js';
 import { createNewCommand } from './commands/new.js';
 import { createProjectsCommand } from './commands/projects.js';
+import { createOpenCommand } from './commands/open.js';
 
 const program = new Command();
 
@@ -27,6 +28,7 @@ program.addCommand(createSearchCommand());
 program.addCommand(createCollectionCommand());
 program.addCommand(createNewCommand());
 program.addCommand(createProjectsCommand());
+program.addCommand(createOpenCommand());
 
 program.on('command:*', (operands) => {
   console.error(chalk.red(`error: unknown command '${operands[0]}'`));
