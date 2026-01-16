@@ -47,54 +47,62 @@ function displayProjects(projects: RecentProject[]): void {
   });
 
   projects.forEach(project => {
+    const displayTitle = chalk.bold(project.name) + (project.hidden ? chalk.gray(' (hidden)') : '');
+    
     table.push([
-      chalk.bold(project.name),
-      chalk.yellow(project.type),
-      chalk.magenta(project.language),
-      chalk.gray(project.path),
-      formatDate(project.createdAt)
-    ]);
-  });
-
-  console.log(table.toString());
-}
-
-function displayProjectsJson(projects: RecentProject[]): void {
-  console.log(JSON.stringify(projects, null, 2));
-}
-
-export function createProjectsCommand(): Command {
-  const cmd = new Command('projects')
-    .description('List and manage recent projects')
-    .alias('view')
-    .option('-t, --type <type>', 'Filter by project type')
-    .option('-l, --language <lang>', 'Filter by language')
-    .option('-n, --limit <number>', 'Number of projects to show', '10')
-    .option('--json', 'Output as JSON');
-
-  cmd.action(async (options: ProjectsListOptions) => {
-    try {
-      const limit = options.limit ? parseInt(String(options.limit), 10) : 10;
-      
-      const projects = await getRecentProjects({
-        type: options.type,
-        language: options.language,
-        limit: limit
-      });
-
-      if (options.json) {
-        displayProjectsJson(projects);
-      } else {
-        console.log('');
-        console.log(chalk.cyan.bold('Recent Projects'));
-        console.log('');
-        displayProjects(projects);
+      displayTitle,
+        chalk.yellow(project.type),
+        chalk.magenta(project.language),
+        chalk.gray(project.path),
+        formatDate(project.createdAt)
+      ]);
+    });
+  
+    console.log(table.toString());
+  }
+  
+  function displayProjectsJson(projects: RecentProject[]): void {
+    console.log(JSON.stringify(projects, null, 2));
+  }
+  
+  export function createProjectsCommand(): Command {
+    const cmd = new Command('projects')
+      .description('List and manage recent projects')
+      .alias('view')
+      .argument('[filter]', 'Filter projects (use "all" to see hidden projects)')
+      .option('-t, --type <type>', 'Filter by project type')
+      .option('-l, --language <lang>', 'Filter by language')
+      .option('-n, --limit <number>', 'Number of projects to show', '10')
+      .option('--json', 'Output as JSON');
+  
+    cmd.action(async (filter: string | undefined, options: ProjectsListOptions) => {
+      try {
+        const limit = options.limit ? parseInt(String(options.limit), 10) : 10;
+        const includeHidden = filter === 'all';
         
-        if (projects.length > 0) {
+        const projects = await getRecentProjects({
+          type: options.type,
+          language: options.language,
+          limit: limit,
+          includeHidden
+        });
+  
+        if (options.json) {
+          displayProjectsJson(projects);
+        } else {
           console.log('');
-          console.log(chalk.gray(`Showing ${projects.length} project${projects.length > 1 ? 's' : ''}`));
+          console.log(chalk.cyan.bold(includeHidden ? 'All Projects (Including Hidden)' : 'Recent Projects'));
+          console.log('');
+          displayProjects(projects);
+          
+          if (projects.length > 0) {
+            console.log('');
+            console.log(chalk.gray(`Showing ${projects.length} project${projects.length > 1 ? 's' : ''}`));
+            if (!includeHidden) {
+              console.log(chalk.gray('Use "makr view all" to see hidden projects'));
+            }
+          }
         }
-      }
     } catch (err) {
       error(`Failed to list projects: ${err instanceof Error ? err.message : 'Unknown error'}`);
       process.exit(1);

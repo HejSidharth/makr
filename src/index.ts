@@ -11,6 +11,8 @@ import { createCollectionCommand } from './commands/collection.js';
 import { createNewCommand } from './commands/new.js';
 import { createProjectsCommand } from './commands/projects.js';
 import { createOpenCommand } from './commands/open.js';
+import { createHideCommand } from './commands/hide.js';
+import { createUnhideCommand } from './commands/unhide.js';
 
 const program = new Command();
 
@@ -29,6 +31,8 @@ program.addCommand(createCollectionCommand());
 program.addCommand(createNewCommand());
 program.addCommand(createProjectsCommand());
 program.addCommand(createOpenCommand());
+program.addCommand(createHideCommand());
+program.addCommand(createUnhideCommand());
 
 program.on('command:*', (operands) => {
   console.error(chalk.red(`error: unknown command '${operands[0]}'`));

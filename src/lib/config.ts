@@ -267,10 +267,14 @@ export async function addRecentProject(project: Omit<RecentProject, 'id' | 'crea
   return newProject;
 }
 
-export async function getRecentProjects(options?: { type?: string; language?: string; limit?: number }): Promise<RecentProject[]> {
+export async function getRecentProjects(options?: { type?: string; language?: string; limit?: number; includeHidden?: boolean }): Promise<RecentProject[]> {
   const config = await readConfig();
   let projects = config.recentProjects;
   
+  if (!options?.includeHidden) {
+    projects = projects.filter(p => !p.hidden);
+  }
+
   if (options?.type) {
     projects = projects.filter(p => p.type === options.type);
   }
@@ -282,6 +286,17 @@ export async function getRecentProjects(options?: { type?: string; language?: st
   }
   
   return projects;
+}
+
+export async function setProjectVisibility(name: string, hidden: boolean): Promise<boolean> {
+  const config = await readConfig();
+  const project = config.recentProjects.find(p => p.name === name);
+  
+  if (!project) return false;
+  
+  project.hidden = hidden;
+  await writeConfig(config);
+  return true;
 }
 
 export async function removeRecentProject(id: string): Promise<boolean> {

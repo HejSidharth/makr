@@ -30,6 +30,7 @@ export interface RecentProject {
   type: string;
   language: string;
   templateUsed?: string;
+  hidden?: boolean;
   createdAt: string;
 }
 
